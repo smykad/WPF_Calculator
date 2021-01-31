@@ -30,7 +30,7 @@ namespace WPF_Calculator
         {
             Button operationButton = sender as Button;
             string operation = operationButton.Name;
-            double answer = 0;
+            double answer;
             bool divByZero = false;
 
             if (ValidInputs(out string userFeedback))
@@ -40,28 +40,27 @@ namespace WPF_Calculator
                     case "button_Add":
                         answer = (_operand1 + _operand2);
                         break;
-
                     case "button_Subtract":
                         answer = (_operand1 - _operand2);
                         break;
-
                     case "button_Multiply":
                         answer = (_operand1 * _operand2);
                         break;
-
                     case "button_Divide":
+
+                        // Check to see if user is trying to divide by 0
                         if(_operand2 == 0)
                         {
                             divByZero = true;
                         }
                         answer = (_operand1 / _operand2);
-
                         break;
-
                     default:
                         answer = 0;
                         break;
                 }
+
+                // If user didn't divide by 0
                 if(!divByZero)
                 {
                     label_Answer.Content = answer.ToString();
@@ -74,9 +73,17 @@ namespace WPF_Calculator
             }
             else
             {
+                // Invalid Input MessageBox
                 MessageBox.Show(userFeedback);
             }
         }
+        /// <summary>
+        /// **************************************************************
+        ///          Validate user inputs
+        /// **************************************************************
+        /// </summary>
+        /// <param name="userFeedback"></param>
+        /// <returns></returns>
         private bool ValidInputs(out string userFeedback)
         {
             bool validInputs = true;
@@ -85,13 +92,13 @@ namespace WPF_Calculator
             if (!double.TryParse(textBox_Operand1.Text, out _operand1))
             {
                 validInputs = false;
-                userFeedback += "Operand 1 must be a double\n";
+                userFeedback += "Operand 1 must be a valid numeric value\n";
             }
 
             if (!double.TryParse(textBox_Operand2.Text, out _operand2))
             {
                 validInputs = false;
-                userFeedback += "Operand 2 must be a double\n";
+                userFeedback += "Operand 2 must be a valid numeric value\n";
             }
             return validInputs;
         }
@@ -104,7 +111,11 @@ namespace WPF_Calculator
             }
             
         }
-
+        /// <summary>
+        /// **************************************************************
+        ///             Check for which button is pressed
+        /// **************************************************************
+        /// </summary>
         private void UpdateTheme()
         {
             if ((bool)radio1.IsChecked)
@@ -117,22 +128,51 @@ namespace WPF_Calculator
                 PurpleTheme();
             }
         }
+        /// <summary>
+        /// **************************************************************
+        ///             Set Purple Theme
+        /// **************************************************************             
+        /// </summary>
         private void PurpleTheme()
         {
             GetImageSource("Images/buttonpurp.png", "Images/barpurp.png", "Images/backgroundpurp.png", out ImageBrush purpButton, out ImageBrush purpBar, out ImageBrush purpBackground);
             SetImageSrc(purpButton, purpBar, purpBackground);
         }
+        /// <summary>
+        /// **************************************************************
+        ///             Set Blue Theme
+        /// **************************************************************
+        /// </summary>
         private void BlueTheme()
         {
             GetImageSource("Images/buttonblue.png", "Images/bar.png", "Images/background.png", out ImageBrush blueButton, out ImageBrush blueBar, out ImageBrush blueBackground);
             SetImageSrc(blueButton, blueBar, blueBackground);
         }
+        /// <summary>
+        /// **************************************************************
+        ///             Get Image Sources
+        /// **************************************************************
+        /// </summary>
+        /// <param name="imagePathOne"></param>
+        /// <param name="imagePathTwo"></param>
+        /// <param name="imagePathThree"></param>
+        /// <param name="imageButton"></param>
+        /// <param name="imageBar"></param>
+        /// <param name="imageBackground"></param>
         private void GetImageSource(string imagePathOne, string imagePathTwo, string imagePathThree, out ImageBrush imageButton, out ImageBrush imageBar, out ImageBrush imageBackground)
         {
             imageButton = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), $"{imagePathOne}")));
             imageBar = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), $"{imagePathTwo}")));
             imageBackground = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), $"{imagePathThree}")));
         }
+        /// <summary>
+        /// **************************************************************
+        ///             Set Images for UI 
+        /// **************************************************************
+        /// </summary>
+        /// <param name="imageButton"></param>
+        /// <param name="imageBar"></param>
+        /// <param name="imageBackground"></param>
         private void SetImageSrc(ImageBrush imageButton, ImageBrush imageBar, ImageBrush imageBackground)
         {
             _button1.ImageSource = imageButton.ImageSource;
@@ -148,13 +188,25 @@ namespace WPF_Calculator
             _radio2.ImageSource = imageBar.ImageSource;
             _background.ImageSource = imageBackground.ImageSource;
         }
-
+        /// <summary>
+        /// **************************************************************
+        ///             Help Window Button
+        /// **************************************************************
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_HelpButton_Click(object sender, RoutedEventArgs e)
         {
             HelpWindow helpWindow = new HelpWindow();
             helpWindow.ShowDialog();
         }
-
+        /// <summary>
+        /// **************************************************************
+        ///             Exit Button
+        /// **************************************************************
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

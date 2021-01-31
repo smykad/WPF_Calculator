@@ -24,6 +24,13 @@ namespace WPF_Calculator
             InitializeComponent();
         }
 
+        /// <summary>
+        /// **************************************************************
+        ///             Exit Button
+        /// **************************************************************
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

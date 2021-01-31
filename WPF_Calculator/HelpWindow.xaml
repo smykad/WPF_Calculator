@@ -9,7 +9,9 @@
         Height="400" 
         Width="300"
         WindowStartupLocation="CenterOwner">
+    
     <Window.Resources>
+        <!--Text Blocks-->
         <Style x:Key="HelpTextBlock" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="20"/>
@@ -25,6 +27,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--Labels-->
         <Style x:Key="BaseLabel" TargetType="Label">
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -44,15 +47,19 @@
         </Style>
     </Window.Resources>
     
+    
     <StackPanel>
+        <!--Background-->
         <StackPanel.Background>
             <ImageBrush 
                 x:Name="_background"
                 ImageSource="Images\backgroundhelp.png"/>
         </StackPanel.Background>
+        <!--Header-->
         <Label
             Content="Instructions"
             Style="{StaticResource BaseLabel}"/>
+        <!--Instructions-->
         <TextBlock
             Text="Enter operands"
             Style="{StaticResource HelpTextBlock}"/>
@@ -65,6 +72,7 @@
         <TextBlock
             Text="To change the theme press the Radio buttons at the bottom"
             Style="{StaticResource HelpTextBlock}"/>
+        <!--Exit Button-->
         <Button x:Name="Button_ExitButton"
                 Content="Exit"
                 Width="60"
