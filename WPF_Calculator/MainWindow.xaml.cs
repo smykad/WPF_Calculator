@@ -54,10 +54,8 @@ namespace WPF_Calculator
                         {
                             divByZero = true;
                         }
-                        else
-                        { 
                         answer = (_operand1 / _operand2);
-                        }
+
                         break;
 
                     default:
@@ -100,17 +98,25 @@ namespace WPF_Calculator
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            if(IsLoaded)
+            {
+                UpdateTheme();
+            }
+            
+        }
+
+        private void UpdateTheme()
+        {
             if ((bool)radio1.IsChecked)
             {
                 BlueTheme();
             }
 
-            if ((bool)radio2.IsChecked)
+            else if ((bool)radio2.IsChecked)
             {
                 PurpleTheme();
             }
         }
-
         private void PurpleTheme()
         {
             GetImageSource("Images/buttonpurp.png", "Images/barpurp.png", "Images/backgroundpurp.png", out ImageBrush purpButton, out ImageBrush purpBar, out ImageBrush purpBackground);
@@ -133,10 +139,25 @@ namespace WPF_Calculator
             _button2.ImageSource = imageButton.ImageSource;
             _button3.ImageSource = imageButton.ImageSource;
             _button4.ImageSource = imageButton.ImageSource;
+            _help.ImageSource = imageButton.ImageSource;
+            _exit.ImageSource = imageButton.ImageSource;
             _textBox1.ImageSource = imageBar.ImageSource;
             _textBox2.ImageSource = imageBar.ImageSource;
             _answer.ImageSource = imageBar.ImageSource;
+            _radio1.ImageSource = imageBar.ImageSource;
+            _radio2.ImageSource = imageBar.ImageSource;
             _background.ImageSource = imageBackground.ImageSource;
+        }
+
+        private void Button_HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.ShowDialog();
+        }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

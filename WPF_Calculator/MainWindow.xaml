@@ -30,6 +30,24 @@
             </Setter>
         </Style>
 
+        <Style x:Key="Help_Exit" TargetType="Button">
+            <Setter Property="Margin" Value="-20"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Azure"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        Color="DimGray"
+                        Direction="220"/>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+
         <!--TextBox-->
         <Style x:Key="DisplayTextBox" TargetType="TextBox">
             <Setter Property="Width" Value="100"/>
@@ -74,11 +92,6 @@
         <Style x:Key="RadioButtons" TargetType="RadioButton">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource ="Images\bar.png"/>
-                </Setter.Value>
-            </Setter>
             <Setter Property="BorderBrush" Value="Azure"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Effect">
@@ -92,8 +105,7 @@
 
     </Window.Resources>
 
-    <Grid
-        Margin="5, 5, 5, 5">
+    <Grid>
         <Grid.Background>
             <ImageBrush 
                 x:Name="_background"
@@ -268,14 +280,27 @@
                 <RadioButton 
                     x:Name="radio1"
                     Grid.Column="0"
+                    IsChecked="True"
                     Style="{StaticResource RadioButtons}"
-                    Checked="RadioButton_Checked"/>
+                    Checked="RadioButton_Checked">
+                    <RadioButton.Background>
+                        <ImageBrush
+                            x:Name="_radio1"
+                            ImageSource="Images\bar.png"/>
+                    </RadioButton.Background>
+                </RadioButton>
 
                 <RadioButton
                     x:Name="radio2"
                     Grid.Column="2"
                     Style="{StaticResource RadioButtons}"
-                    Checked="RadioButton_Checked"/>
+                    Checked="RadioButton_Checked">
+                    <RadioButton.Background>
+                        <ImageBrush
+                            x:Name="_radio2"
+                            ImageSource="Images\bar.png"/>
+                    </RadioButton.Background>
+                </RadioButton>
 
                 <!--Radio Button Labels-->
                 <Label
@@ -288,6 +313,38 @@
                     Style="{StaticResource BaseLabel}"/>
             </Grid>
             <!--#endregion-->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="Button_Help"
+                    Grid.Column="0"
+                    Content="Help"
+                    Style="{StaticResource Help_Exit}"
+                    Click="Button_HelpButton_Click">
+                    <Button.Background>
+                        <ImageBrush 
+                        x:Name="_help" ImageSource="Images\buttonblue.png"/>
+                    </Button.Background>
+
+                </Button>
+
+                <Button 
+                    x:Name="Button_Exit"
+                    Grid.Column="1"
+                    Content="Exit"
+                    Style="{StaticResource Help_Exit}" Click="Button_Exit_Click">
+                    <Button.Background>
+                        <ImageBrush 
+                        x:Name="_exit" ImageSource="Images\buttonblue.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            
 
         </StackPanel>
 

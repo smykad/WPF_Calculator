@@ -1,0 +1,87 @@
+﻿<Window x:Class="WPF_Calculator.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Calculator"
+        mc:Ignorable="d"
+        Title="Help Window" 
+        Height="400" 
+        Width="300"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style x:Key="HelpTextBlock" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Azure"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        Color="DimGray"
+                        Direction="220"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BaseLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Azure"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect
+                        Color="DimGray"
+                        Direction="220"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <StackPanel.Background>
+            <ImageBrush 
+                x:Name="_background"
+                ImageSource="Images\backgroundhelp.png"/>
+        </StackPanel.Background>
+        <Label
+            Content="Instructions"
+            Style="{StaticResource BaseLabel}"/>
+        <TextBlock
+            Text="Enter operands"
+            Style="{StaticResource HelpTextBlock}"/>
+        <TextBlock
+            Text="Click operator of your choice"
+            Style="{StaticResource HelpTextBlock}"/>
+        <TextBlock
+            Text="The calculation will display in the label at the top."
+            Style="{StaticResource HelpTextBlock}"/>
+        <TextBlock
+            Text="To change the theme press the Radio buttons at the bottom"
+            Style="{StaticResource HelpTextBlock}"/>
+        <Button x:Name="Button_ExitButton"
+                Content="Exit"
+                Width="60"
+                Height="25"
+                FontFamily="Arial"
+                FontWeight="Bold"
+                FontSize="18"
+                Foreground="Azure" Click="Button_ExitButton_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="Images\buttonhelp.png"/>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect
+                        Color="DimGray"
+                        Direction="220"/>
+            </Button.Effect>
+        </Button>
+
+    </StackPanel>
+</Window>

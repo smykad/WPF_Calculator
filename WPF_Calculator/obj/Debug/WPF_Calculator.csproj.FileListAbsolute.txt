@@ -13,3 +13,5 @@ C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\WPF_Cal
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\WPF_Calculator.csproj.CoreCompileInputs.cache
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\WPF_Calculator.exe
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\WPF_Calculator.pdb
+C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\HelpWindow.g.cs
+C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\HelpWindow.baml
