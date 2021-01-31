@@ -1,7 +1,6 @@
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\bin\Debug\WPF_Calculator.exe.config
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\bin\Debug\WPF_Calculator.exe
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\bin\Debug\WPF_Calculator.pdb
-C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\WPF_Calculator.csprojAssemblyReference.cache
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\MainWindow.g.cs
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\App.g.cs
 C:\Users\dougs\Documents\CIT 195\WPF_Calculator\WPF_Calculator\obj\Debug\WPF_Calculator_MarkupCompile.cache
