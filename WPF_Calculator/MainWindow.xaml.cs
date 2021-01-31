@@ -29,12 +29,11 @@ namespace WPF_Calculator
         private void button_Operation_Click(object sender, RoutedEventArgs e)
         {
             Button operationButton = sender as Button;
-
             string operation = operationButton.Name;
-            string userFeedback = "";
-            double answer;
+            double answer = 0;
+            bool divByZero = false;
 
-            if (ValidInputs(out userFeedback))
+            if (ValidInputs(out string userFeedback))
             {
                 switch (operation)
                 {
@@ -51,14 +50,29 @@ namespace WPF_Calculator
                         break;
 
                     case "button_Divide":
+                        if(_operand2 == 0)
+                        {
+                            divByZero = true;
+                        }
+                        else
+                        { 
                         answer = (_operand1 / _operand2);
+                        }
                         break;
 
                     default:
                         answer = 0;
                         break;
                 }
-                label_Answer.Content = answer.ToString();
+                if(!divByZero)
+                {
+                    label_Answer.Content = answer.ToString();
+                }
+                else
+                {
+                    label_Answer.Content = "Can't Divide by 0";
+                }
+                
             }
             else
             {
@@ -83,46 +97,46 @@ namespace WPF_Calculator
             }
             return validInputs;
         }
-        private void GetOperands()
-        {
-            double.TryParse(textBox_Operand1.Text, out _operand1);
-            double.TryParse(textBox_Operand2.Text, out _operand2);
-        }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            var blueButton = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/buttonblue.png")));
-            var purpButton = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/buttonpurp.png")));
-            var blueBar = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/bar.png")));
-            var purpBar = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/barpurp.png")));
-            var blueBackground = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/background.png")));
-            var purpBackground = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/backgroundpurp.png")));
-
-
             if ((bool)radio1.IsChecked)
             {
-                _button1.ImageSource = blueButton.ImageSource;
-                _button2.ImageSource = blueButton.ImageSource;
-                _button3.ImageSource = blueButton.ImageSource;
-                _button4.ImageSource = blueButton.ImageSource;
-                _textBox1.ImageSource = blueBar.ImageSource;
-                _textBox2.ImageSource = blueBar.ImageSource;
-                _answer.ImageSource = blueBar.ImageSource;
-                _background.ImageSource = blueBackground.ImageSource;
+                BlueTheme();
             }
 
-            if((bool)radio2.IsChecked)
+            if ((bool)radio2.IsChecked)
             {
-                _button1.ImageSource = purpButton.ImageSource;
-                _button2.ImageSource = purpButton.ImageSource;
-                _button3.ImageSource = purpButton.ImageSource;
-                _button4.ImageSource = purpButton.ImageSource;
-                _textBox1.ImageSource = purpBar.ImageSource;
-                _textBox2.ImageSource = purpBar.ImageSource;
-                _answer.ImageSource = purpBar.ImageSource;
-                _background.ImageSource = purpBackground.ImageSource;
+                PurpleTheme();
             }
         }
 
+        private void PurpleTheme()
+        {
+            GetImageSource("Images/buttonpurp.png", "Images/barpurp.png", "Images/backgroundpurp.png", out ImageBrush purpButton, out ImageBrush purpBar, out ImageBrush purpBackground);
+            SetImageSrc(purpButton, purpBar, purpBackground);
+        }
+        private void BlueTheme()
+        {
+            GetImageSource("Images/buttonblue.png", "Images/bar.png", "Images/background.png", out ImageBrush blueButton, out ImageBrush blueBar, out ImageBrush blueBackground);
+            SetImageSrc(blueButton, blueBar, blueBackground);
+        }
+        private void GetImageSource(string imagePathOne, string imagePathTwo, string imagePathThree, out ImageBrush imageButton, out ImageBrush imageBar, out ImageBrush imageBackground)
+        {
+            imageButton = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), $"{imagePathOne}")));
+            imageBar = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), $"{imagePathTwo}")));
+            imageBackground = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), $"{imagePathThree}")));
+        }
+        private void SetImageSrc(ImageBrush imageButton, ImageBrush imageBar, ImageBrush imageBackground)
+        {
+            _button1.ImageSource = imageButton.ImageSource;
+            _button2.ImageSource = imageButton.ImageSource;
+            _button3.ImageSource = imageButton.ImageSource;
+            _button4.ImageSource = imageButton.ImageSource;
+            _textBox1.ImageSource = imageBar.ImageSource;
+            _textBox2.ImageSource = imageBar.ImageSource;
+            _answer.ImageSource = imageBar.ImageSource;
+            _background.ImageSource = imageBackground.ImageSource;
+        }
     }
 }
