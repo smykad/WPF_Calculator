@@ -221,14 +221,14 @@
                     
                     Grid.Row="0"
                     Grid.Column="0"
-                    Content="Operand1"
+                    Content="Operand 1"
                     Style="{StaticResource BaseLabel}"/>
 
                 <!--User Input Label II-->
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
-                    Content="Operand2"
+                    Content="Operand 2"
                     Style="{StaticResource BaseLabel}"/>
 
                 <!--User Input TextBox I-->
